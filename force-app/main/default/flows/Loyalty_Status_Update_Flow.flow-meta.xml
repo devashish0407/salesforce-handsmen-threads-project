@@ -1,73 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Loyalty_Email</name>
+        <label>Loyalty Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>HandsMen_Customer__c.Loyalty_Email_Alert</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Loop</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>Loop.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>HandsMen_Customer__c.Loyalty_Email_Alert</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
-        <name>Check_Purchases</name>
-        <label>Check Purchases</label>
+        <name>Loaylty</name>
+        <label>Loaylty</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Update_Silver_Status</targetReference>
+            <targetReference>Purchase_Between_500_and_1000</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default</defaultConnectorLabel>
+        <defaultConnectorLabel>Silver</defaultConnectorLabel>
         <rules>
-            <name>High_Purchases</name>
+            <name>Gold</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_records.Total_Purchases__c</leftValueReference>
+                <leftValueReference>Loop.Total_Purchases__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
                     <numberValue>1000.0</numberValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>Get_records.Loyalty_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Gold</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
-                <targetReference>Update_Loyalty_Status</targetReference>
+                <targetReference>If_Purchase_greater_than_1000</targetReference>
             </connector>
-            <label>High Purchases</label>
+            <label>Gold</label>
         </rules>
         <rules>
-            <name>Low_Purchases</name>
+            <name>Bronze</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_records.Total_Purchases__c</leftValueReference>
-                <operator>LessThan</operator>
+                <leftValueReference>Loop.Total_Purchases__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
                 <rightValue>
                     <numberValue>500.0</numberValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>Get_records.Loyalty_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Bronze</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
-                <targetReference>Update_Bronze_Status</targetReference>
+                <targetReference>If_Purchase_less_than_500</targetReference>
             </connector>
-            <label>Low Purchases</label>
+            <label>Bronze</label>
         </rules>
     </decisions>
     <environments>Default</environments>
     <interviewLabel>Loyalty Status Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Loyalty Status Update Flow</label>
     <loops>
-        <name>Get_records</name>
-        <label>Get records</label>
+        <name>Loop</name>
+        <label>Loop</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <collectionReference>Get_All_Customers</collectionReference>
+        <collectionReference>Customer</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Check_Purchases</targetReference>
+            <targetReference>Loaylty</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>
@@ -90,56 +96,32 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>Get_All_Customers</name>
-        <label>Get All Customers</label>
+        <name>Customer</name>
+        <label>Customer</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_records</targetReference>
+            <targetReference>Loop</targetReference>
         </connector>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>HandsMen_Customer__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Bronze_Status</name>
-        <label>Update Bronze Status</label>
+        <name>If_Purchase_greater_than_1000</name>
+        <label>If Purchase greater than 1000</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_records</targetReference>
+            <targetReference>Loyalty_Email</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>OwnerId</field>
+            <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_records.OwnerId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Loyalty_Status__c</field>
-            <value>
-                <stringValue>Bronze</stringValue>
-            </value>
-        </inputAssignments>
-        <object>HandsMen_Customer__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Loyalty_Status</name>
-        <label>Update Loyalty Status</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_records</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>OwnerId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Get_records.OwnerId</elementReference>
+                <elementReference>Loop.Id</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -151,19 +133,43 @@
         <object>HandsMen_Customer__c</object>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Silver_Status</name>
-        <label>Update Silver Status</label>
+        <name>If_Purchase_less_than_500</name>
+        <label>If Purchase less than 500</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_records</targetReference>
+            <targetReference>Loyalty_Email</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>OwnerId</field>
+            <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_records.OwnerId</elementReference>
+                <elementReference>Loop.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Loyalty_Status__c</field>
+            <value>
+                <stringValue>Bronze</stringValue>
+            </value>
+        </inputAssignments>
+        <object>HandsMen_Customer__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Purchase_Between_500_and_1000</name>
+        <label>Purchase Between 500 and 1000</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Loyalty_Email</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Loop.Id</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -178,12 +184,12 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_All_Customers</targetReference>
+            <targetReference>Customer</targetReference>
         </connector>
         <schedule>
             <frequency>Daily</frequency>
-            <startDate>2025-07-10</startDate>
-            <startTime>03:00:00.000Z</startTime>
+            <startDate>2025-07-18</startDate>
+            <startTime>00:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>

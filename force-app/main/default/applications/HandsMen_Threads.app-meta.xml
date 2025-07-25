@@ -4,7 +4,7 @@
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>HandsMen Threads, a dynamic organization in the fashion industry, is embarking on a Salesforce project designed to revolutionize their data management and enhance customer relations.</description>
+    <description>a premium fashion platform to streamline men’s bespoke tailoring and enhance customer experience through personalized styling and seamless order management.</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
@@ -15,13 +15,13 @@
     <navType>Standard</navType>
     <tabs>HandsMen_Customer__c</tabs>
     <tabs>HandsMen_Order__c</tabs>
-    <tabs>Inventory__c</tabs>
     <tabs>HandsMen_Product__c</tabs>
+    <tabs>Inventory__c</tabs>
+    <tabs>Marketing_Campaign__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>Marketing_Campaign__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>HandsMen_Threads_UtilityBar</utilityBar>
 </CustomApplication>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Stock_Alert_Email</name>
-        <label>Stock Alert Email</label>
+        <name>Stock_Alert</name>
+        <label>Stock Alert</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <actionName>Order.Order_Confirmation_Email_Alert</actionName>
+        <actionName>Inventory__c.Stock_Email_Alert</actionName>
         <actionType>emailAlert</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -14,14 +14,14 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>Order.Order_Confirmation_Email_Alert</nameSegment>
+        <nameSegment>Inventory__c.Stock_Email_Alert</nameSegment>
         <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
-    <interviewLabel>Recipient: Inventory Manager. {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Stock Alert Email</label>
+    <interviewLabel>Stock Alert Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Stock Alert Flow</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -45,7 +45,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Stock_Alert_Email</targetReference>
+            <targetReference>Stock_Alert</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

@@ -3,7 +3,7 @@
     <fullName>Quantity__c</fullName>
     <externalId>false</externalId>
     <label>Quantity</label>
-    <precision>5</precision>
+    <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
     <trackTrending>false</trackTrending>

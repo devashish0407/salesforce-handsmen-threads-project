@@ -3,7 +3,7 @@
     <fullName>Stock_Quantity__c</fullName>
     <externalId>false</externalId>
     <label>Stock Quantity</label>
-    <precision>5</precision>
+    <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
     <trackTrending>false</trackTrending>

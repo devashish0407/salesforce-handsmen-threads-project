@@ -5,10 +5,8 @@
       "default": true
     }
   ],
-  "oauthLocalPort": 1717,
-  "name": "HandsMen-Threads",
+  "name": "HandsMen Thread",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "64.0"
-  
 }

@@ -153,12 +153,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>HandsMen Customer</label>
+    <label>Marketing Campaign</label>
     <nameField>
-        <label>HandsMen Customer Name</label>
-        <type>Text</type>
+        <displayFormat>MC -{0000}</displayFormat>
+        <label>Marketing Campaign Number</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>HandsMen Customers</pluralLabel>
+    <pluralLabel>Marketing Campaigns</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

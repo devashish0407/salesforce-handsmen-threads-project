@@ -4,41 +4,41 @@
     <!-- Flows -->
     <types>
         <members>Order_Confirmation_Flow</members>
-        <members>Stock_Alert_Email</members>
+        <members>Stock_Alert_Flow</members>
         <members>Loyalty_Status_Update_Flow</members>
         <name>Flow</name>
     </types>
 
     <!-- Apex Classes -->
     <types>
-        <members>OrderTriggerHandler</members>
         <members>InventoryBatchJob</members>
         <name>ApexClass</name>
     </types>
 
     <!-- Apex Triggers -->
     <types>
-        <members>OrderTrigger</members>
+        <members>OrderTotalTrigger</members>
+        <members>StockDeductionTrigger</members>
         <name>ApexTrigger</name>
     </types>
 
     <!-- Custom Objects -->
     <types>
         <members>HandsMen_Customer__c</members>
-        <members>HandsMen_Orders__c</members>
-        <members>HandsMen_Products__c</members>
+        <members>HandsMen_Order__c</members>
+        <members>HandsMen_Product__c</members>
         <members>Inventory__c</members>
-        <members>Marketing_Campaigns__c</members>
+        <members>Marketing_Campaign__c</members>
         <name>CustomObject</name>
     </types>
 
     <!-- Custom Tabs -->
     <types>
         <members>HandsMen_Customer__c</members>
-        <members>HandsMen_Orders__c</members>
-        <members>HandsMen_Products__c</members>
+        <members>HandsMen_Order__c</members>
+        <members>HandsMen_Product__c</members>
         <members>Inventory__c</members>
-        <members>Marketing_Campaigns__c</members>
+        <members>Marketing_Campaign__c</members>
         <name>CustomTab</name>
     </types>
 
@@ -57,7 +57,9 @@
 
     <!-- Permission Set -->
     <types>
-        <members>Permission_Platform_1</members>
+        <members>Marketing_Permission_Platform_1</members>
+        <members>Inventory_Permission_Platform_1</members>
+        <members>Sales_Permission_Platform_1</members>
         <name>PermissionSet</name>
     </types>
 
@@ -68,6 +70,10 @@
         <members>Inventory</members>
         <name>Role</name>
     </types>
-
+    <types>
+        <members>Order_Confirmation_Email</members>
+        <name>EmailTemplate</name>
+    </types>
+ 
     <version>64.0</version>
 </Package>

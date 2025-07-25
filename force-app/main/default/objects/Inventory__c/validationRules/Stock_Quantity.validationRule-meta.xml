@@ -3,6 +3,5 @@
     <fullName>Stock_Quantity</fullName>
     <active>true</active>
     <errorConditionFormula>Stock_Quantity__c &lt;= 0</errorConditionFormula>
-    <errorDisplayField>Stock_Quantity__c</errorDisplayField>
-    <errorMessage>the inventory count is never less than zero</errorMessage>
+    <errorMessage>the inventory count is never less than zero.</errorMessage>
 </ValidationRule>
